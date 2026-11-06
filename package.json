@@ -1,6 +1,17 @@
 {
-  "dependencies": {
-    "ts-node": "^10.9.2",
-    "typescript": "^7.0.2"
+  "name": "ts-internship",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "tsc --noEmit",
+    "ci": "npm run check && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^6"
   }
 }
