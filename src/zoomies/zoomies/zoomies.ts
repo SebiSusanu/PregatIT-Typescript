@@ -9,21 +9,27 @@ export const ROOM = 10; // 10x10, coordinates 0..9
 
 export function move( pos: Position, dir: Dir, steps = 1): Position {
   let [x, y] = pos;
+  //const [x, y] = pos;
   switch (dir) {
     case "N":
       y=Math.min(y+steps, 9);
+      // yreturn=Math.min(y+steps, ROOM-1);
       break;
     case "S":
       y=Math.max(y-steps, 0);
+      // yreturn=Math.max(y-steps, 0);
       break;
     case "E":
       x=Math.min(x+steps, 9);
+      // xreturn=Math.min(x+steps, ROOM-1);
       break;
     case "W":
       x=Math.max(x-steps, 0);
+      // xreturn=Math.max(x-steps, 0);
       break;
   } 
   return [x, y];
+  //return [xreturn, yreturn];
 }
 
 export function run(start: Position, dirs: Dir[]): Position[] {
