@@ -1,0 +1,17 @@
+name: Request Codeowner Reviews
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  request-reviews:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Request Codeowner Reviews
+        uses: madhead/gh-action-codeowners-review-requests@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
