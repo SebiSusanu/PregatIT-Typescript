@@ -8,22 +8,28 @@ export const ROOM = 10; // 10x10, coordinates 0..9
 // TODO: type the parameters and the return values. tsc complains until you do.
 
 export function move( pos: Position, dir: Dir, steps = 1): Position {
-  let [x, y] = pos;
+  let [xreturn, yreturn] = pos;
+  //const [x, y] = pos;
   switch (dir) {
     case "N":
-      y=Math.min(y+steps, 9);
+      //y=Math.min(y+steps, 9);
+       yreturn=Math.min(yreturn+steps, ROOM-1);
       break;
     case "S":
-      y=Math.max(y-steps, 0);
+      //y=Math.max(y-steps, 0);
+       yreturn=Math.max(yreturn-steps, 0);
       break;
     case "E":
-      x=Math.min(x+steps, 9);
+     // x=Math.min(x+steps, 9);
+       xreturn=Math.min(xreturn+steps, ROOM-1);
       break;
     case "W":
-      x=Math.max(x-steps, 0);
+     // x=Math.max(x-steps, 0);
+       xreturn=Math.max(xreturn-steps, 0);
       break;
   } 
-  return [x, y];
+ // return [x, y];
+  return [xreturn, yreturn];
 }
 
 export function run(start: Position, dirs: Dir[]): Position[] {
