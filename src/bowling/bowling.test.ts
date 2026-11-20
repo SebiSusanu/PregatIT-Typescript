@@ -1,9 +1,6 @@
 import {test } from "node:test";
 import assert from "node:assert/strict";
 import {score} from "./bowling.ts";
-import {scoreOneSpare} from "./bowling.ts";
-import {scoreOneStrike} from "./bowling.ts";
-import {scorePerfectGame} from "./bowling.ts";
 test( "gutter game:20 rolls of 0 scores 0", () => {
     const rolls :number[] = new Array<number>(20).fill(0);
     assert.equal(score(rolls), 0);
@@ -19,7 +16,7 @@ test("one spare: 5, 5, 3 scores 16", () => {
     rolls[0] =5;
     rolls[1] =5;
     rolls[2] =3;
-    assert.equal(scoreOneSpare(rolls), 16);
+    assert.equal(score(rolls), 16);
 });
 
 test("one strike: 10, 3, 4 scores 24", () => {
@@ -27,12 +24,12 @@ test("one strike: 10, 3, 4 scores 24", () => {
     rolls[0] = 10;
     rolls[1] = 3;
     rolls[2] = 4;
-    assert.equal(scoreOneStrike(rolls), 24);
+    assert.equal(score(rolls), 24);
 });
 
 test("perfect game: 12 strikes score 300", () => {
     const rolls = new Array<number>(12).fill(10);
-    assert.equal(scorePerfectGame(rolls), 300);
+    assert.equal(score(rolls), 300);
 });
 
 
