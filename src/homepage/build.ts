@@ -13,7 +13,7 @@ function picture(hex: string): string {
 
 function card(cat: Cat): string {
   const c = cat.id % colors.length;
-  return `<article class="c${c}"><img src="img/cat-${c}.svg" alt="${cat.name}" width="64" height="64"><span class="n">${cat.name}</span><br>${cat.quirk}<br>naps: ${cat.naps} hours a day</article>`;
+  return `<article class="c${c}"><img src="img/cat-${c}.svg" alt="${cat.name}" width="64" height="64"><span class="n">${cat.name}</span><span class="q">${cat.quirk}</span>naps: ${cat.naps} hours a day</article>`;
 }
 
 rmSync(out, { recursive: true, force: true });
@@ -27,7 +27,7 @@ const colorRules = colors
   .map((hex, idx) => `.c${idx}{border-color:${hex}}.c${idx} .n{color:${hex}}`)
   .join("");
 
-const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>The cats</title><style>body{font-family:sans-serif;margin:24px}article{border:2px solid;border-radius:8px;padding:8px;margin:8px;width:260px;display:inline-block;vertical-align:top;min-height:150px}.n{display:inline-block;font-size:1.17em;font-weight:bold;margin:6px 0}${colorRules}</style></head><body><h1>The cats</h1>${cats.map(card).join("")}</body></html>`;
+const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>The cats</title><style>body{font-family:sans-serif;margin:24px}article{border:2px solid;border-radius:8px;padding:8px;margin:8px;width:260px;display:inline-block;vertical-align:top;min-height:150px}.n{display:block;font-size:1.17em;font-weight:bold;margin:6px 0}.q{display:block;margin-bottom:4px}${colorRules}</style></head><body><h1>The cats</h1>${cats.map(card).join("")}</body></html>`;
 
 writeFileSync(`${out}/index.html`, html);
 console.log(`${cats.length} cats in ${out}/`);
