@@ -21,7 +21,7 @@ function picture(hex: string): string {
 
 function card(cat: Cat): string {
   const c = cat.id % colors.length;
-  return `<article class="c${c}"><img src="img/cat-${c}.svg" alt="${cat.name}" width="64" height="64"><h3>${cat.name}</h3><p>${cat.quirk}</p><p>naps: <b>${cat.naps}</b> hours a day</p></article>`;
+  return `<article class="c${c}"><img src="img/cat-${c}.svg" alt="${cat.name}" width="64" height="64"><h3>${cat.name}</h3>${cat.quirk}<br>naps: ${cat.naps} hours a day</article>`;
 }
 
 rmSync(out, { recursive: true, force: true });
@@ -42,7 +42,7 @@ const html = `<!doctype html>
   <title>The cats</title>
   <style>
     body{font-family:sans-serif;margin:24px}
-    article{border:2px solid;border-radius:8px;padding:8px;margin:8px;width:260px;float:left;height:150px}
+    article{border:2px solid;border-radius:8px;padding:8px;margin:8px;width:260px;display:inline-block;vertical-align:top;min-height:150px}
     ${colorRules}
   </style>
 </head>
