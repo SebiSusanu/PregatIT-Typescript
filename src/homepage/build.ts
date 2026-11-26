@@ -8,17 +8,15 @@ const colors = ["#f4a261", "#2a9d8f", "#e76f51", "#457b9d", "#e9c46a", "#8d99ae"
 
 function card(cat: Cat): string {
   const c = cat.id % colors.length;
-  return `<article class="c${c}"><span class="n">🐱 ${cat.name}</span>${cat.quirk} · ${cat.naps}h/d</article>`;
+  return `<div class="c${c}">${cat.name} · ${cat.quirk} (${cat.naps}h)</div>`;
 }
 
 rmSync(out, { recursive: true, force: true });
 mkdirSync(out, { recursive: true });
 
-const colorRules = colors
-  .map((hex, i) => `.c${i}{border-color:${hex}}.c${i} .n{color:${hex}}`)
-  .join("");
+const rules = colors.map((h, i) => `.c${i}{border-color:${h}}`).join("");
 
-const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>The cats</title><style>body{font-family:sans-serif;margin:20px}article{border:2px solid;border-radius:8px;padding:8px;margin:6px;width:256px;display:inline-block;vertical-align:top;min-height:80px}.n{display:block;font-weight:bold;margin-bottom:4px}${colorRules}</style></head><body><h1>The cats</h1>${cats.map(card).join("")}</body></html>`;
+const html = `<!doctype html><html><head><meta charset="utf-8"><title>Cats</title><style>body{font-family:sans-serif;margin:12px}div{border:2px solid;border-radius:6px;padding:6px;margin:4px;width:240px;display:inline-block;vertical-align:top}${rules}</style></head><body><h1>Cats</h1>${cats.map(card).join("")}</body></html>`;
 
 writeFileSync(`${out}/index.html`, html);
 console.log(`${cats.length} cats in ${out}/`);
