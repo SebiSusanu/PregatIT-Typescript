@@ -21,7 +21,7 @@ export function knockOff(table: Table, name: string): Table {
 }
 
 export function knockAllOff(table: Table): Table[] {
-   let current = [...table.items];
+   const current = [...table.items];
   const snapshots: Table[] = [];
   while (current.length > 0) {
     current.pop();

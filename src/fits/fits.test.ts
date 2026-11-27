@@ -106,6 +106,7 @@ function compileTimeChecks(): void {
   shoebox.width = 31;
 
   // @ts-expect-error bestBox may return null; .width is not safe without a check
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions -- intentional compile-time type error test under @ts-expect-error
   bestBox(blu, [shoebox]).width;
 
   // @ts-expect-error a string is not a width
